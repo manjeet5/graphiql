@@ -16,7 +16,7 @@
     "stylelint": "^13.6.1"
   },
   "scripts": {
-    "stylelint-staged": "stylelint '**/*.scss'",
+    "stylelint": "stylelint '**/*.scss'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -31,7 +31,7 @@
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --write"
     ],
-    "**/*.scss": "stylelint-staged"
+    "src/**/*.scss": ["stylelint '**/*.scss"]
   },
   "eslintConfig": {
     "extends": "react-app"
