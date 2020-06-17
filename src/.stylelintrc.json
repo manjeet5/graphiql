@@ -1,0 +1,16 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "indentation": [
+      2,
+      {
+        "except": ["value"],
+        "severity": "warning"
+      }
+    ],
+    "max-empty-lines": 4,
+    "declaration-colon-newline-after": "always-multi-line",
+    "number-leading-zero": "never",
+    "max-nesting-depth": 4
+  }
+}
