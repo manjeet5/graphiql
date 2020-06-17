@@ -1,4 +1,5 @@
 import { GRAPHIQL_QUERIES } from "../constants/graphiqlConstants";
+
 export const ADD_TEXT_AREA_REF = "ADD_TEXT_AREA_REF";
 export const ADD_QUERY_EDITOR_REF = "ADD_QUERY_EDITOR_REF";
 export const UPDATE_ACTIVE_QUERY = "UPDATE_ACTIVE_QUERY";

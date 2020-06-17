@@ -1,5 +1,4 @@
 import React, { useReducer } from "react";
-import logo from "../logo.svg";
 import "../sass/main.scss";
 import { getWindow } from "./components/utils/EnvironmentUtils";
 import { reducer, init } from "./components/store/reducer";
