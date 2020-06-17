@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import QueryEditor from "./QueryEditor";
-import { getWindow } from "../utils/EnvironmentUtils";
 
 const Editor = ({ store, dispatch }) => {
   const { activeQuery } = store;
