@@ -12,9 +12,11 @@
     "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "stylelint": "^13.6.1"
   },
   "scripts": {
+    "stylelint-staged": "stylelint '**/*.scss'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -28,7 +30,8 @@
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --write"
-    ]
+    ],
+    "**/*.scss": "stylelint-staged"
   },
   "eslintConfig": {
     "extends": "react-app"
