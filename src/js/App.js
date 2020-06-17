@@ -1,24 +1,16 @@
-import React from "react";
+import React, { useReducer } from "react";
 import logo from "../logo.svg";
 import "../sass/main.scss";
+import { getWindow } from "./components/utils/EnvironmentUtils";
+import { reducer, init } from "./components/store/reducer";
+import Editor from "./components/editor/Editor";
 
 function App() {
+  const browserWindow = getWindow();
+  const [state, dispatch] = useReducer(reducer, browserWindow, init);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="graphiql-container">
+      <Editor store={state} dispatch={dispatch} />
     </div>
   );
 }
