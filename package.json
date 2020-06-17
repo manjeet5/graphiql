@@ -31,7 +31,9 @@
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --write"
     ],
-    "src/**/*.scss": ["stylelint '**/*.scss"]
+    "src/**/*.scss": [
+      "stylelint '**/*.scss"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,6 +51,8 @@
     ]
   },
   "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "stylelint-config-standard": "^20.0.0"
   }
 }
