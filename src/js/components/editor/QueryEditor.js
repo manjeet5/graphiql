@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import {
   ADD_TEXT_AREA_REF,
   ADD_QUERY_EDITOR_REF,
@@ -12,7 +12,7 @@ const QueryEditor = ({ query, dispatch }) => {
   const handleChange = (event) => {
     dispatch({ type: UPDATE_ACTIVE_QUERY, payload: event.target.value });
   };
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch({ type: ADD_TEXT_AREA_REF, payload: textAreaRef });
     dispatch({ type: ADD_QUERY_EDITOR_REF, payload: queryEditorRef });
   }, [dispatch]);
