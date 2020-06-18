@@ -1,11 +1,7 @@
 import React, { useReducer } from "react";
 import "../sass/main.scss";
 import { getWindow } from "./components/utils/EnvironmentUtils";
-import {
-  reducer,
-  init,
-  CREATE_QUERY_REQUEST_BODY,
-} from "./components/store/reducer";
+import { reducer, init } from "./components/store/reducer";
 import Editor from "./components/editor/Editor";
 import Actions from "./components/header/Actions";
 
