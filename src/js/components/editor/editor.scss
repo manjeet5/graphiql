@@ -17,3 +17,40 @@
   border: none;
   resize: none;
 }
+
+.query-result-type-number {
+  color: $blue;
+}
+
+.query-result-type-number::before {
+  content: "  ";
+}
+
+.query-result-type-string {
+  color: $red;
+}
+
+.query-result-type-string::before {
+  content: '  "';
+}
+
+.query-result-type-string::after {
+  content: '"';
+}
+
+.query-result-name {
+  color: $darkGrey;
+}
+
+.query-result-name::before {
+  content: '"';
+}
+
+.query-result-name::after {
+  content: '"  :';
+}
+
+.query-result-open-square-bracket::before {
+  content: "";
+  margin-left: 1rem;
+}
