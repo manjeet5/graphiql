@@ -4,7 +4,10 @@ import {
   DELETE_QUERY,
   TOGGLE_SHOW_QUERY_LIST_HISTORY,
 } from "../store/reducer";
-import { CLOSE_ICON } from "../constants/graphiqlConstants";
+import {
+  CLOSE_ICON,
+  CLOSE_CURLY_BRACKET,
+} from "../constants/graphiqlConstants";
 const HistoryQueries = ({ queryList, show, dispatch }) => {
   const history = useRef(null);
 
@@ -31,7 +34,7 @@ const HistoryQueries = ({ queryList, show, dispatch }) => {
     return null;
   }
   return (
-    <div className="history-queries-container">
+    <div className="history-queries-container" data-testid="history-queries">
       <div
         tabIndex="0"
         className="history-queries-bar"
@@ -40,13 +43,16 @@ const HistoryQueries = ({ queryList, show, dispatch }) => {
       >
         <div tabIndex="0" className="history-queries-header">
           <h1>Saved Queries</h1>
-          <button onClick={closeNotification}>{CLOSE_ICON}</button>
+          <button data-testid="close-notification" onClick={closeNotification}>
+            {CLOSE_ICON}
+          </button>
         </div>
 
         {queryList.map((query, index) => {
           return (
             <div className="query-container" key={index}>
               <button
+                data-testid="query-detail"
                 className="query-detail"
                 aria-label="history label"
                 onClick={() => selectQuery(query)}
@@ -54,11 +60,12 @@ const HistoryQueries = ({ queryList, show, dispatch }) => {
                 {query.substring(0, 30)}
               </button>
               <button
+                data-testid="query-delete"
                 className="query-delete"
                 aria-label="delete query"
                 onClick={() => deleteQuery(index)}
               >
-                X
+                {CLOSE_ICON}
               </button>
             </div>
           );
