@@ -1,6 +1,10 @@
 import React from "react";
 import { RUN, SAVE, HISTORY } from "../constants/graphiqlConstants";
-
+import {
+  TOGGLE_SHOW_QUERY_LIST_HISTORY,
+  SAVE_QUERY_TO_LOCAL_STORAGE,
+  CREATE_QUERY_REQUEST_BODY,
+} from "../store/reducer";
 const createButton = (id, ariaLabel, handleClick, className) => {
   const content =
     id === "run" ? <div className="run-button-content"></div> : id;
@@ -20,13 +24,13 @@ const Actions = ({ dispatch }) => {
   const handleClick = (event) => {
     switch (event.target.id) {
       case RUN: {
-        return dispatch({ type: "CREATE_QUERY_REQUEST_BODY" });
+        return dispatch({ type: CREATE_QUERY_REQUEST_BODY });
       }
       case SAVE: {
-        return dispatch({ type: "SAVE_QUERY_TO_LOCAL_STORAGE" });
+        return dispatch({ type: SAVE_QUERY_TO_LOCAL_STORAGE });
       }
       case HISTORY: {
-        return dispatch({ type: "SHOW_QUERY_LIST_HISTORY" });
+        return dispatch({ type: TOGGLE_SHOW_QUERY_LIST_HISTORY });
       }
       default: {
         return;

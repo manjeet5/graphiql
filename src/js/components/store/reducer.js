@@ -7,6 +7,7 @@ export const ADD_QUERY_RESULT_REF = "ADD_QUERY_RESULT_REF";
 export const CREATE_QUERY_REQUEST_BODY = "CREATE_QUERY_REQUEST_BODY";
 export const SAVE_QUERY_TO_LOCAL_STORAGE = "SAVE_QUERY_TO_LOCAL_STORAGE";
 export const SHOW_QUERY_LIST_HISTORY = "SHOW_QUERY_LIST_HISTORY";
+export const TOGGLE_SHOW_QUERY_LIST_HISTORY = "TOGGLE_SHOW_QUERY_LIST_HISTORY";
 
 export function reducer(state, action) {
   switch (action.type) {
@@ -34,8 +35,8 @@ export function reducer(state, action) {
       window.localStorage.setItem("graphiqlQueries", JSON.stringify(newList));
       return { ...state, queryList: newList };
     }
-    case window: {
-      return { ...state, showQueryListHistory: true };
+    case TOGGLE_SHOW_QUERY_LIST_HISTORY: {
+      return { ...state, showQueryListHistory: !state.showQueryListHistory };
     }
     default:
       return state;
