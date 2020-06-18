@@ -7,7 +7,7 @@ import {
 } from "../store/reducer";
 const createButton = (id, ariaLabel, handleClick, className) => {
   const content =
-    id === "run" ? <div className="run-button-content"></div> : id;
+    id === "run" ? <div id={id} className="run-button-content"></div> : id;
   return (
     <button
       id={id}
