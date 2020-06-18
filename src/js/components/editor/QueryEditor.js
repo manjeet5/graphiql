@@ -20,6 +20,7 @@ const QueryEditor = ({ query, dispatch }) => {
   return (
     <div className="query-editor" ref={queryEditorRef}>
       <textarea
+        aria-label="query input"
         className="query-editor-text-area"
         value={query}
         ref={textAreaRef}

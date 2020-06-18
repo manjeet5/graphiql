@@ -153,6 +153,7 @@ export const showError = ({ error }) => {
 export const addLineNumbers = (list) => {
   return list.map((item, index) => (
     <div
+      tabIndex="0"
       key={index}
       data-testid={"content-element"}
       className="list-with-line-numbers"
@@ -176,6 +177,7 @@ const QueryResult = React.memo(({ dispatch, requestBody }) => {
   }
   return (
     <div
+      tabIndex="0"
       key={requestBody.query}
       className="query-editor-results"
       ref={queryResultRef}
