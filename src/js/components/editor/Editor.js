@@ -9,6 +9,7 @@ const Editor = ({ store, dispatch }) => {
     showQueryListHistory,
     queryEditorRef,
     queryResultRef,
+    baseUrl,
   } = store;
   const editor = useRef(null);
   const initResize = (event) => {
@@ -50,7 +51,11 @@ const Editor = ({ store, dispatch }) => {
     >
       <QueryEditor query={activeQuery} dispatch={dispatch} />
       <div className="resize-editor" onMouseDown={initResize}></div>
-      <QueryResult requestBody={requestBody} dispatch={dispatch} />
+      <QueryResult
+        baseUrl={baseUrl}
+        requestBody={requestBody}
+        dispatch={dispatch}
+      />
     </div>
   );
 };

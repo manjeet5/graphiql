@@ -163,10 +163,10 @@ export const addLineNumbers = (list) => {
     </div>
   ));
 };
-const QueryResult = React.memo(({ dispatch, requestBody }) => {
+const QueryResult = React.memo(({ baseUrl, dispatch, requestBody }) => {
   const queryResultRef = useRef(null);
-  const baseUrl = "https://fakeql.com/graphql/eaddf714b3619f67b9495e56cd40dc9e";
   const state = usePostFetch(baseUrl, requestBody);
+  console.log("state", state);
   useEffect(() => {
     dispatch({ type: ADD_QUERY_RESULT_REF, payload: queryResultRef });
   }, [dispatch]);
@@ -182,6 +182,7 @@ const QueryResult = React.memo(({ dispatch, requestBody }) => {
       className="query-editor-results"
       ref={queryResultRef}
     >
+      {state.error && <h1>Oopsy, Please Check your Query</h1>}
       {state.isLoading && showLoader()}
       {state.error && showError(state.error)}
       {withLineNumbers}

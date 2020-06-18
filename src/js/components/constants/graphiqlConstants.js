@@ -1,4 +1,5 @@
 export const GRAPHIQL_QUERIES = "graphiqlQueries";
+export const GRAPHIQL_QUERIES_URL = "graphiqlQueriesUrl";
 export const COMMA = ",";
 export const OPEN_CURLY_BRACKET = "{";
 export const CLOSE_CURLY_BRACKET = "}";

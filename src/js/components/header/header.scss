@@ -48,3 +48,21 @@
   border-style: solid;
   border-width: 0.5rem 0 0.5rem 1rem;
 }
+
+.base-url-container {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+
+  button {
+    width: 10%;
+    background: $pink;
+    padding: 0.25rem 0;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  input {
+    width: 90%;
+  }
+}
