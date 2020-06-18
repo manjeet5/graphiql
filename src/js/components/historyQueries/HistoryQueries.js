@@ -4,10 +4,7 @@ import {
   DELETE_QUERY,
   TOGGLE_SHOW_QUERY_LIST_HISTORY,
 } from "../store/reducer";
-import {
-  CLOSE_ICON,
-  CLOSE_CURLY_BRACKET,
-} from "../constants/graphiqlConstants";
+import { CLOSE_ICON } from "../constants/graphiqlConstants";
 const HistoryQueries = ({ queryList, show, dispatch }) => {
   const history = useRef(null);
 
