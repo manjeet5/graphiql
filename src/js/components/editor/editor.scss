@@ -54,3 +54,18 @@
   content: "";
   margin-left: 1rem;
 }
+
+.list-with-line-numbers {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.line-numbers {
+  width: 1rem;
+  padding: 0 0.15rem;
+  margin-right: 1rem;
+  font-size: 0.8rem;
+  color: $lightGrey;
+  text-align: right;
+}

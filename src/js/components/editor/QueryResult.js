@@ -15,12 +15,11 @@ export const getComma = (isLastItem) => {
 export const calculatePaddingLeft = (depth) => {
   return depth + "rem";
 };
-const createBracket = (depth, isOpen, isLastItem) => {
+export const createCurlyBracket = (depth, isOpen, isLastItem) => {
   const paddingLeft = calculatePaddingLeft(depth);
   if (isOpen) {
     return <span style={{ paddingLeft }}>{OPEN_CURLY_BRACKET}</span>;
   }
-
   return (
     <div style={{ paddingLeft }}>
       {CLOSE_CURLY_BRACKET}
@@ -28,7 +27,7 @@ const createBracket = (depth, isOpen, isLastItem) => {
     </div>
   );
 };
-const createSquareBracket = (depth, isOpen, isLastItem) => {
+export const createSquareBracket = (depth, isOpen, isLastItem) => {
   if (isOpen) {
     return (
       <span className="query-result-open-square-bracket">
@@ -45,18 +44,31 @@ const createSquareBracket = (depth, isOpen, isLastItem) => {
     );
   }
 };
-const createProperty = (depth, name, value, isLastItem) => {
+export const createProperty = (depth, name, value, isLastItem) => {
+  let valueElement,
+    showComma = true;
+  switch (typeof value) {
+    case "object": {
+      valueElement = Array.isArray(value)
+        ? createSquareBracket(1, true)
+        : createCurlyBracket(1, true);
+      showComma = false;
+      break;
+    }
+    case "number": {
+      valueElement = <span className="query-result-type-number">{value}</span>;
+      break;
+    }
+    case "string": {
+      valueElement = <span className="query-result-type-string">{value}</span>;
+      break;
+    }
+    default:
+      break;
+  }
+  const comma = showComma && getComma(isLastItem);
   const paddingLeft = calculatePaddingLeft(depth);
   let nameElement = <span className="query-result-name">{name}</span>;
-  let valueElement = Array.isArray(value)
-    ? createSquareBracket(1, true)
-    : createBracket(1, true);
-  if (typeof value === "number") {
-    valueElement = <span className="query-result-type-number">{value}</span>;
-  } else if (typeof value === "string") {
-    valueElement = <span className="query-result-type-string">{value}</span>;
-  }
-  const comma = typeof value !== "object" && getComma(isLastItem);
   return (
     <div style={{ paddingLeft }}>
       {nameElement}
@@ -66,32 +78,32 @@ const createProperty = (depth, name, value, isLastItem) => {
   );
 };
 
-const isLastItem = (index, data) => {
+export const isLastItem = (index, data) => {
   if (Array.isArray(data)) {
     return index === data.length - 1;
-  } else {
-    return index === Object.keys(data).length - 1;
   }
+  return index === Object.keys(data).length - 1;
 };
 
-const parseArray = (array, depth) => {
-  return array.map((item, index) => {
+export const parseArray = (array, depth) => {
+  return array.reduce((list, item, index) => {
     const isLastItemInArray = isLastItem(index, array);
     return [
-      createBracket(depth + 1, true),
+      ...list,
+      createCurlyBracket(depth + 1, true),
       ...parseResults(item, depth + 1),
-      createBracket(depth + 1, false, isLastItemInArray),
+      createCurlyBracket(depth + 1, false, isLastItemInArray),
     ];
-  });
+  }, []);
 };
 
-const parseObject = (obj, depth) => {
+export const parseObject = (obj, depth) => {
   return Object.keys(obj).reduce((list, key, index) => {
     const isLastItemInObj = isLastItem(index, obj);
     if (typeof obj[key] === "object") {
       const closingBracket = Array.isArray(obj[key])
         ? createSquareBracket(depth + 1, false, isLastItemInObj)
-        : createBracket(depth + 1, false, isLastItemInObj);
+        : createCurlyBracket(depth + 1, false, isLastItemInObj);
       return [
         ...list,
         createProperty(depth + 1, key, obj[key]),
@@ -106,24 +118,49 @@ const parseObject = (obj, depth) => {
     }
   }, []);
 };
-const parseResults = (result, depth = 0) => {
+export const parseResults = (result, depth = 0) => {
   const list = [];
-  if (!depth) list.push(createBracket(depth, true));
+  if (!depth) list.push(createCurlyBracket(depth, true));
   if (Array.isArray(result)) {
     list.push(...parseArray(result, depth));
   } else if (typeof result === "object") {
-    list.push(...parseObject(result, depth, list));
+    list.push(...parseObject(result, depth));
   }
-  if (!depth) list.push(createBracket(depth, false, true));
+  if (!depth) list.push(createCurlyBracket(depth, false, true));
   return list;
 };
 
-const showLoader = () => {
+export const showLoader = () => {
   return (
-    <div className="loader-container">
+    <div
+      id="loader"
+      className="loader-container"
+      aria-live="assertive"
+      role="alert"
+    >
       <div className="loader"></div>
     </div>
   );
+};
+
+export const showError = ({ error }) => {
+  return (
+    <div id="error" className="error-container" role="alert">
+      {error}
+    </div>
+  );
+};
+export const addLineNumbers = (list) => {
+  return list.map((item, index) => (
+    <div
+      key={index}
+      data-testid={"content-element"}
+      className="list-with-line-numbers"
+    >
+      <span className="line-numbers">{index}</span>
+      {item}
+    </div>
+  ));
 };
 const QueryResult = React.memo(({ dispatch, requestBody }) => {
   const queryResultRef = useRef(null);
@@ -132,14 +169,20 @@ const QueryResult = React.memo(({ dispatch, requestBody }) => {
   useEffect(() => {
     dispatch({ type: ADD_QUERY_RESULT_REF, payload: queryResultRef });
   }, [dispatch]);
+  let withLineNumbers = [];
+  if (state.data) {
+    const list = parseResults(state.data);
+    withLineNumbers = addLineNumbers(list);
+  }
   return (
     <div
       key={requestBody.query}
       className="query-editor-results"
       ref={queryResultRef}
     >
-      {state.loading && showLoader()}
-      {state.data && parseResults(state.data)}
+      {state.isLoading && showLoader()}
+      {state.error && showError(state.error)}
+      {withLineNumbers}
     </div>
   );
 });
