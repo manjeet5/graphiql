@@ -19,7 +19,7 @@ import {
   CLOSE_SQUARE_BRACKET,
 } from "../../../../js/components/constants/graphiqlConstants";
 import { shallow } from "../../../../enzyme";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitForElement } from "@testing-library/react";
 const mockFetch = (mockData) => {
   global.fetch = jest.fn().mockImplementation(() =>
     Promise.resolve({
@@ -27,9 +27,6 @@ const mockFetch = (mockData) => {
     })
   );
 };
-function flushPromises() {
-  return new Promise((resolve) => setImmediate(resolve));
-}
 
 describe("utility functions", () => {
   it("calculatePaddingLeft should return 2rem", () => {
@@ -248,7 +245,9 @@ describe("QueryResult", () => {
     mockFetch(useApiFetchMock);
     render(<QueryResult dispatch={dispatch} requestBody={requestBody} />);
     expect(screen.getByRole("alert")).toHaveAttribute("aria-live");
-    await flushPromises();
-    expect(screen.getAllByTestId("content-element").length).toEqual(3);
+    const contentElement = await waitForElement(() =>
+      screen.getAllByTestId("content-element")
+    );
+    expect(contentElement.length).toEqual(3);
   });
 });
