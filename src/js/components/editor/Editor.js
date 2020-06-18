@@ -3,7 +3,13 @@ import QueryEditor from "./QueryEditor";
 import QueryResult from "./QueryResult";
 
 const Editor = ({ store, dispatch }) => {
-  const { activeQuery, requestBody, queryEditorRef, queryResultRef } = store;
+  const {
+    activeQuery,
+    requestBody,
+    showQueryListHistory,
+    queryEditorRef,
+    queryResultRef,
+  } = store;
   const editor = useRef(null);
   const initResize = (event) => {
     window.addEventListener("mousemove", resize);
@@ -38,7 +44,10 @@ const Editor = ({ store, dispatch }) => {
     return stopResize;
   });
   return (
-    <div className="editor-container" ref={editor}>
+    <div
+      className={`editor-container ${showQueryListHistory && "stop-scrolling"}`}
+      ref={editor}
+    >
       <QueryEditor query={activeQuery} dispatch={dispatch} />
       <div className="resize-editor" onMouseDown={initResize}></div>
       <QueryResult requestBody={requestBody} dispatch={dispatch} />
