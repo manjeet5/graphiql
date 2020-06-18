@@ -10,7 +10,6 @@
     ],
     "max-empty-lines": 4,
     "declaration-colon-newline-after": "always-multi-line",
-    "number-leading-zero": "never",
     "max-nesting-depth": 4
   }
 }

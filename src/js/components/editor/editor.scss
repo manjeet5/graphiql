@@ -69,3 +69,9 @@
   color: $lightGrey;
   text-align: right;
 }
+
+.resize-editor {
+  width: 0.5rem;
+  background: grey;
+  cursor: col-resize;
+}
