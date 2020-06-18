@@ -4,3 +4,6 @@ export const OPEN_CURLY_BRACKET = "{";
 export const CLOSE_CURLY_BRACKET = "}";
 export const OPEN_SQUARE_BRACKET = "[";
 export const CLOSE_SQUARE_BRACKET = "]";
+export const RUN = "run";
+export const SAVE = "save";
+export const HISTORY = "history";

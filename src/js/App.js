@@ -7,6 +7,7 @@ import {
   CREATE_QUERY_REQUEST_BODY,
 } from "./components/store/reducer";
 import Editor from "./components/editor/Editor";
+import Actions from "./components/header/Actions";
 
 function App() {
   const browserWindow = getWindow();
@@ -19,6 +20,7 @@ function App() {
       <button type="button" onClick={handleClick}>
         Run
       </button>
+      <Actions store={state} dispatch={dispatch} />
       <Editor store={state} dispatch={dispatch} />
     </div>
   );
