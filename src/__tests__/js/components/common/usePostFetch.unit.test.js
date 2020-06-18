@@ -19,11 +19,6 @@ const mockFetchCleanUp = () => {
 };
 
 describe("usePostFetch", () => {
-  beforeAll(() => {});
-  afterAll(() => {
-    global.fetch.mockClear();
-    delete global.fetch;
-  });
   it("initial and success state", async () => {
     const useApiFetchMock = "hope";
     mockFetch(useApiFetchMock);
