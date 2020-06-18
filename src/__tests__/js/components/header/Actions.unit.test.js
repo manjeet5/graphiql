@@ -1,5 +1,7 @@
 import React from "react";
-import Actions from "../../../../js/components/header/Actions";
+import Actions, {
+  createButton,
+} from "../../../../js/components/header/Actions";
 import {
   CREATE_QUERY_REQUEST_BODY,
   SAVE_QUERY_TO_LOCAL_STORAGE,
@@ -8,13 +10,28 @@ import {
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 
+describe('createButton with id="run"', () => {
+  const { unmount } = render(createButton("run", "test"));
+  const runButton = screen.getByTestId("run-button");
+  expect(runButton).toHaveAttribute("aria-label", "test");
+  expect(runButton).toContainElement(screen.getByTestId("run-button-child"));
+  unmount();
+});
+
+describe('createButton with id="history"', () => {
+  const { unmount } = render(createButton("history", "test"));
+  const historyButton = screen.getByTestId("history-button");
+  expect(historyButton).toHaveAttribute("aria-label", "test");
+  expect(historyButton).toHaveTextContent("history");
+  unmount();
+});
 describe("Actions", () => {
   let dispatch;
   beforeEach(() => {
     dispatch = jest.fn();
   });
   it("render", () => {
-    render(<Actions dispatch={dispatch} />);
+    const { unmount } = render(<Actions dispatch={dispatch} />);
     const [runButton, saveButton, historyButton] = screen.getAllByRole(
       "button"
     );
@@ -41,5 +58,6 @@ describe("Actions", () => {
     expect(dispatch.mock.calls[2][0].type).toEqual(
       TOGGLE_SHOW_QUERY_LIST_HISTORY
     );
+    unmount();
   });
 });

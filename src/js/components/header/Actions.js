@@ -5,12 +5,21 @@ import {
   SAVE_QUERY_TO_LOCAL_STORAGE,
   CREATE_QUERY_REQUEST_BODY,
 } from "../store/reducer";
-const createButton = (id, ariaLabel, handleClick, className) => {
+export const createButton = (id, ariaLabel, handleClick, className) => {
   const content =
-    id === "run" ? <div id={id} className="run-button-content"></div> : id;
+    id === "run" ? (
+      <div
+        id={id}
+        data-testid={`${id}-button-child`}
+        className="run-button-content"
+      ></div>
+    ) : (
+      id
+    );
   return (
     <button
       id={id}
+      data-testid={`${id}-button`}
       aria-label={ariaLabel}
       onClick={handleClick}
       className={className}
