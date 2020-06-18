@@ -32,7 +32,7 @@ export function reducer(state, action) {
     case SAVE_QUERY_TO_LOCAL_STORAGE: {
       //save query to local storage
       const newList = [state.activeQuery, ...state.queryList];
-      window.localStorage.setItem("graphiqlQueries", JSON.stringify(newList));
+      window.localStorage.setItem(GRAPHIQL_QUERIES, JSON.stringify(newList));
       return { ...state, queryList: newList };
     }
     case TOGGLE_SHOW_QUERY_LIST_HISTORY: {
