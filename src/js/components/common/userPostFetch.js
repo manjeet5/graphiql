@@ -64,10 +64,7 @@ function usePostFetch(baseUrl, requestBody) {
         cache: "no-cache",
       })
         .then((response) => response.json())
-        .then((data) => {
-          console.log("data", data);
-          dispatch({ type: FETCH_SUCCESS, payload: data });
-        })
+        .then((data) => dispatch({ type: FETCH_SUCCESS, payload: data }))
         .catch((error) => dispatch({ type: FETCH_ERROR, error }));
     }
   }, [baseUrl, requestBody]);
