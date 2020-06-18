@@ -1,7 +1,5 @@
 import React from "react";
-import Actions, {
-  createButton,
-} from "../../../../js/components/header/Actions";
+import Actions from "../../../../js/components/header/Actions";
 import {
   CREATE_QUERY_REQUEST_BODY,
   SAVE_QUERY_TO_LOCAL_STORAGE,
