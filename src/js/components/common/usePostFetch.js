@@ -21,6 +21,7 @@ function reducer(state, action) {
         isLoading: true,
         requestAbortController: action.payload.abortController,
         requestBody: action.payload.requestBody,
+        error: null,
       };
     }
     case FETCH_SUCCESS: {
