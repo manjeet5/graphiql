@@ -36,8 +36,6 @@ describe("history Queries", () => {
     //simulate keydown action
     act(() => {
       fireEvent.keyDown(closeQueryListButton, { key: "Escape" });
-      // closeQueryListButton.dispatchEvent(new MouseEvent("onkeydown", {bubbles: true, key: "Escape"}));
-      console.log("dispatch.mock.calls", dispatch.mock.calls);
       expect(dispatch.mock.calls[1][0].type).toEqual(
         TOGGLE_SHOW_QUERY_LIST_HISTORY
       );
