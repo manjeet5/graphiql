@@ -8,6 +8,7 @@ export const CREATE_QUERY_REQUEST_BODY = "CREATE_QUERY_REQUEST_BODY";
 export const SAVE_QUERY_TO_LOCAL_STORAGE = "SAVE_QUERY_TO_LOCAL_STORAGE";
 export const SHOW_QUERY_LIST_HISTORY = "SHOW_QUERY_LIST_HISTORY";
 export const TOGGLE_SHOW_QUERY_LIST_HISTORY = "TOGGLE_SHOW_QUERY_LIST_HISTORY";
+export const DELETE_QUERY = "DELETE_QUERY";
 
 export function reducer(state, action) {
   switch (action.type) {
@@ -37,6 +38,17 @@ export function reducer(state, action) {
     }
     case TOGGLE_SHOW_QUERY_LIST_HISTORY: {
       return { ...state, showQueryListHistory: !state.showQueryListHistory };
+    }
+    case DELETE_QUERY: {
+      const newQueryList = [
+        ...state.queryList.slice(0, action.payload),
+        ...state.queryList.slice(action.payload + 1),
+      ];
+      window.localStorage.setItem(
+        GRAPHIQL_QUERIES,
+        JSON.stringify(newQueryList)
+      );
+      return { ...state, queryList: newQueryList };
     }
     default:
       return state;
