@@ -7,3 +7,4 @@ export const CLOSE_SQUARE_BRACKET = "]";
 export const RUN = "run";
 export const SAVE = "save";
 export const HISTORY = "history";
+export const CLOSE_ICON = "X";
