@@ -19,14 +19,13 @@ yarn run
 ```
 
 #### Get Graphql endpoint
-You can use [fakeQL](https://fakeql.com/) to deploy a fake graphql endpoint. They also provide you a list of sample queries that you can run on the graphql endpoint. Here is a snapshot of the details for a recently deployed api:
-![fakeql deployed api](https://github.com/manjeet5/graphiql/blob/editor/public/fakeql.png)
+You can use [fakeQL](https://fakeql.com/) to deploy a fake graphql endpoint. They also provide you a list of sample queries that you can run on the graphql endpoint.
 
 #### run tests
 ```
 yarn test
 ```
-
+When you add --coverage flag to the above command, many test results are failing. Please note that this a issue with the recent version of jest. Still working on resolving it
 
 ## Functionalities
 - Choose the graphql endpoint against which you would like to run queries
