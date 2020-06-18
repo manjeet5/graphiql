@@ -11,6 +11,7 @@ const HistoryQueries = ({ queryList, show, dispatch }) => {
   useEffect(() => {
     show && history.current.focus();
   }, [show]);
+
   const selectQuery = (query) => {
     dispatch({ type: UPDATE_ACTIVE_QUERY, payload: query });
   };
