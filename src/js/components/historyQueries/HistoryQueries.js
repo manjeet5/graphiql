@@ -9,7 +9,6 @@ const HistoryQueries = ({ queryList, show, dispatch }) => {
   const history = useRef(null);
 
   useEffect(() => {
-    console.log(history);
     show && history.current.focus();
   }, [show]);
   const selectQuery = (query) => {
@@ -27,7 +26,9 @@ const HistoryQueries = ({ queryList, show, dispatch }) => {
       closeNotification();
     }
   };
-  if (!show) return null;
+  if (!show) {
+    return null;
+  }
   return (
     <div className="history-queries-container">
       <div
@@ -42,9 +43,8 @@ const HistoryQueries = ({ queryList, show, dispatch }) => {
         </div>
 
         {queryList.map((query, index) => {
-          console.log("query", query);
           return (
-            <div className="query-container">
+            <div className="query-container" key={index}>
               <button
                 className="query-detail"
                 aria-label="history label"
