@@ -1,6 +1,5 @@
-import { renderHook, act } from "@testing-library/react-hooks";
-import usePostFetch from "../../../../js/components/common/userPostFetch";
-import EnvironmentUtils from "../../../../js/components/utils/EnvironmentUtils";
+import { renderHook } from "@testing-library/react-hooks";
+import usePostFetch from "../../../../js/components/common/usePostFetch";
 
 const mockFetch = (mockData) => {
   global.fetch = jest.fn().mockImplementation(() =>
