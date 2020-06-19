@@ -32,7 +32,7 @@ describe("Actions", () => {
   });
   it("render", () => {
     const { unmount } = render(
-      <Actions dispatch={dispatch} store={{ activeQuery: "a", baseUrl: "b" }} />
+      <Actions dispatch={dispatch} activeQuery="a" baseUrl="b" />
     );
     const [runButton, saveButton, historyButton] = screen.getAllByRole(
       "button"
