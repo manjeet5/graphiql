@@ -44,7 +44,9 @@
         "statements": 90
       }
     },
-    "coverageReporters": ["text"]
+    "coverageReporters": [
+      "text"
+    ]
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
@@ -70,6 +72,7 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "stylelint-config-standard": "^20.0.0"
