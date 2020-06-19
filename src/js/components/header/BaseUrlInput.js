@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { UPDATE_BASE_URL } from "../store/reducer";
 
 const BaseUrlInput = ({ url, dispatch }) => {
-  console.log(url, "url");
   const [baseUrl, setBaseUrl] = useState(url);
   const handleChange = (event) => {
     setBaseUrl(event.target.value);
