@@ -49,9 +49,13 @@ export const createProperty = (depth, name, value, isLastItem) => {
     showComma = true;
   switch (typeof value) {
     case "object": {
-      valueElement = Array.isArray(value)
-        ? createSquareBracket(1, true)
-        : createCurlyBracket(1, true);
+      if (value === null) {
+        valueElement = `null`;
+      } else {
+        valueElement = Array.isArray(value)
+          ? createSquareBracket(1, true)
+          : createCurlyBracket(1, true);
+      }
       showComma = false;
       break;
     }
@@ -100,7 +104,9 @@ export const parseArray = (array, depth) => {
 export const parseObject = (obj, depth) => {
   return Object.keys(obj).reduce((list, key, index) => {
     const isLastItemInObj = isLastItem(index, obj);
-    if (typeof obj[key] === "object") {
+    if (obj[key] === null) {
+      return [...list, createProperty(depth + 1, key, obj[key])];
+    } else if (typeof obj[key] === "object") {
       const closingBracket = Array.isArray(obj[key])
         ? createSquareBracket(depth + 1, false, isLastItemInObj)
         : createCurlyBracket(depth + 1, false, isLastItemInObj);
