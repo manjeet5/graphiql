@@ -45,10 +45,7 @@ const Actions = ({ store, dispatch }) => {
         return dispatch({ type: CREATE_QUERY_REQUEST_BODY });
       }
       case SAVE: {
-        if (store.activeQuery) {
-          return dispatch({ type: SAVE_QUERY_TO_LOCAL_STORAGE });
-        }
-        return;
+        return dispatch({ type: SAVE_QUERY_TO_LOCAL_STORAGE });
       }
       case HISTORY: {
         return dispatch({ type: TOGGLE_SHOW_QUERY_LIST_HISTORY });
@@ -60,12 +57,6 @@ const Actions = ({ store, dispatch }) => {
   };
 
   const isActionEnabled = store.activeQuery && store.baseUrl;
-  console.log(
-    "isActionEnabled",
-    isActionEnabled,
-    store.activeQuery,
-    store.baseUrl
-  );
   return (
     <div className="graphiql-header">
       <h1 className="graphiql-title">GraphiQL</h1>
