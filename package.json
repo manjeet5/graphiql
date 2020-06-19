@@ -27,7 +27,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn run test --watchAll"
+      "pre-push": "CI=true && yarn run test"
     }
   },
   "jest": {
