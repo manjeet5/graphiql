@@ -243,7 +243,9 @@ describe("QueryResult", () => {
   it("render successfully", async () => {
     const useApiFetchMock = { a: "b" };
     mockFetch(useApiFetchMock);
-    render(<QueryResult dispatch={dispatch} requestBody={requestBody} />);
+    render(
+      <QueryResult dispatch={dispatch} requestBody={requestBody} baseUrl="" />
+    );
     expect(screen.getByRole("alert")).toHaveAttribute("aria-live");
     const contentElement = await waitForElement(() =>
       screen.getAllByTestId("content-element")
