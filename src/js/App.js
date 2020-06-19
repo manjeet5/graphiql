@@ -6,11 +6,9 @@ import Editor from "./components/editor/Editor";
 import Actions from "./components/header/Actions";
 import HistoryQueries from "./components/historyQueries/HistoryQueries";
 import BaseUrlInput from "./components/header/BaseUrlInput";
-
 function App() {
   const browserWindow = getWindow();
   const [state, dispatch] = useReducer(reducer, browserWindow, init);
-
   return (
     <div className="graphiql-container">
       <BaseUrlInput url={state.baseUrl} dispatch={dispatch} />
