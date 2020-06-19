@@ -5,13 +5,21 @@ import {
   SAVE_QUERY_TO_LOCAL_STORAGE,
   CREATE_QUERY_REQUEST_BODY,
 } from "../store/reducer";
-export const createButton = (id, ariaLabel, handleClick, className) => {
+export const createButton = (
+  id,
+  ariaLabel,
+  handleClick,
+  className,
+  isEnabled
+) => {
   const content =
     id === "run" ? (
       <div
         id={id}
         data-testid={`${id}-button-child`}
-        className="run-button-content"
+        className={`run-button-content ${
+          isEnabled ? "" : "run-button-content-disabled"
+        }`}
       ></div>
     ) : (
       id
@@ -23,20 +31,24 @@ export const createButton = (id, ariaLabel, handleClick, className) => {
       aria-label={ariaLabel}
       onClick={handleClick}
       className={className}
+      disabled={!isEnabled}
     >
       {content}
     </button>
   );
 };
 
-const Actions = ({ dispatch }) => {
+const Actions = ({ store, dispatch }) => {
   const handleClick = (event) => {
     switch (event.target.id) {
       case RUN: {
         return dispatch({ type: CREATE_QUERY_REQUEST_BODY });
       }
       case SAVE: {
-        return dispatch({ type: SAVE_QUERY_TO_LOCAL_STORAGE });
+        if (store.activeQuery) {
+          return dispatch({ type: SAVE_QUERY_TO_LOCAL_STORAGE });
+        }
+        return;
       }
       case HISTORY: {
         return dispatch({ type: TOGGLE_SHOW_QUERY_LIST_HISTORY });
@@ -47,17 +59,37 @@ const Actions = ({ dispatch }) => {
     }
   };
 
+  const isActionEnabled = store.activeQuery && store.baseUrl;
+  console.log(
+    "isActionEnabled",
+    isActionEnabled,
+    store.activeQuery,
+    store.baseUrl
+  );
   return (
     <div className="graphiql-header">
       <h1 className="graphiql-title">GraphiQL</h1>
       <div className="actions-container">
-        {createButton(RUN, "Run Query", handleClick, "action-button-run")}
-        {createButton(SAVE, "Save Query", handleClick, "action-button-save")}
+        {createButton(
+          RUN,
+          "Run Query",
+          handleClick,
+          "action-button-run",
+          isActionEnabled
+        )}
+        {createButton(
+          SAVE,
+          "Save Query",
+          handleClick,
+          "action-button-save",
+          isActionEnabled
+        )}
         {createButton(
           HISTORY,
           "Show Query History",
           handleClick,
-          "action-button-history"
+          "action-button-history",
+          isActionEnabled
         )}
       </div>
     </div>
