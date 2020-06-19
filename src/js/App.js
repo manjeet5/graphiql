@@ -15,7 +15,11 @@ function App() {
         show={state.showQueryListHistory}
         dispatch={dispatch}
       />
-      <Actions store={state} dispatch={dispatch} />
+      <Actions
+        activeQuery={state.activeQuery}
+        baseUrl={state.baseUrl}
+        dispatch={dispatch}
+      />
       <Editor store={state} dispatch={dispatch} />
     </div>
   );

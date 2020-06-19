@@ -1,4 +1,5 @@
 import { useReducer, useEffect } from "react";
+import PropTypes from "prop-types";
 const FETCH_STARTED = "FETCH_STARTED";
 const FETCH_SUCCESS = "FETCH_SUCCESS";
 const FETCH_ERROR = "FETCH_ERROR";
@@ -75,4 +76,8 @@ function usePostFetch(baseUrl, requestBody) {
   return { isLoading, data, error };
 }
 
+usePostFetch.propTypes = {
+  baseUrl: PropTypes.string.isRequired,
+  requestBody: PropTypes.string,
+};
 export default usePostFetch;

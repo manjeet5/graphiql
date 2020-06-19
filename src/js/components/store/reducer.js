@@ -87,5 +87,6 @@ export const init = () => {
     queryList,
     requestBody: "",
     baseUrl,
+    showQueryListHistory: false,
   };
 };

@@ -5,6 +5,8 @@ import {
   UPDATE_ACTIVE_QUERY,
 } from "../store/reducer";
 import { QueryEditorPlaceholder } from "./QueryEditorPlaceholder";
+import PropTypes from "prop-types";
+
 const QueryEditor = ({ query, dispatch }) => {
   const textAreaRef = useRef(null);
   const queryEditorRef = useRef(null);
@@ -31,4 +33,8 @@ const QueryEditor = ({ query, dispatch }) => {
   );
 };
 
+QueryEditor.propTypes = {
+  query: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
 export default QueryEditor;

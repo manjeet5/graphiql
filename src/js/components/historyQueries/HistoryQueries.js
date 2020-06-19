@@ -5,6 +5,8 @@ import {
   TOGGLE_SHOW_QUERY_LIST_HISTORY,
 } from "../store/reducer";
 import { CLOSE_ICON } from "../constants/graphiqlConstants";
+import PropTypes from "prop-types";
+
 const HistoryQueries = ({ queryList, show, dispatch }) => {
   const history = useRef(null);
 
@@ -72,4 +74,9 @@ const HistoryQueries = ({ queryList, show, dispatch }) => {
   );
 };
 
+HistoryQueries.propTypes = {
+  queryList: PropTypes.array.isRequired,
+  show: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
 export default HistoryQueries;

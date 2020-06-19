@@ -8,6 +8,7 @@ import {
   OPEN_SQUARE_BRACKET,
   CLOSE_SQUARE_BRACKET,
 } from "../constants/graphiqlConstants";
+import PropTypes from "prop-types";
 
 export const getComma = (isLastItem) => {
   return isLastItem ? null : COMMA;
@@ -172,7 +173,6 @@ export const addLineNumbers = (list) => {
 const QueryResult = React.memo(({ baseUrl, dispatch, requestBody }) => {
   const queryResultRef = useRef(null);
   const state = usePostFetch(baseUrl, requestBody);
-  console.log("state", state);
   useEffect(() => {
     dispatch({ type: ADD_QUERY_RESULT_REF, payload: queryResultRef });
   }, [dispatch]);
@@ -196,4 +196,9 @@ const QueryResult = React.memo(({ baseUrl, dispatch, requestBody }) => {
   );
 });
 
+QueryResult.propTypes = {
+  baseUrl: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  requestBody: PropTypes.string,
+};
 export default QueryResult;

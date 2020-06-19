@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import QueryEditor from "./QueryEditor";
 import QueryResult from "./QueryResult";
+import PropTypes from "prop-types";
 
 const Editor = ({ store, dispatch }) => {
   const {
@@ -58,5 +59,17 @@ const Editor = ({ store, dispatch }) => {
       />
     </div>
   );
+};
+
+Editor.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  store: PropTypes.shape({
+    activeQuery: PropTypes.string.isRequired,
+    requestBody: PropTypes.string.isRequired,
+    showQueryListHistory: PropTypes.bool.isRequired,
+    queryEditorRef: PropTypes.object,
+    queryResultRef: PropTypes.object,
+    baseUrl: PropTypes.string,
+  }),
 };
 export default Editor;

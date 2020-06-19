@@ -5,6 +5,8 @@ import {
   SAVE_QUERY_TO_LOCAL_STORAGE,
   CREATE_QUERY_REQUEST_BODY,
 } from "../store/reducer";
+import PropTypes from "prop-types";
+
 export const createButton = (
   id,
   ariaLabel,
@@ -38,7 +40,7 @@ export const createButton = (
   );
 };
 
-const Actions = ({ store, dispatch }) => {
+const Actions = ({ activeQuery, baseUrl, dispatch }) => {
   const handleClick = (event) => {
     switch (event.target.id) {
       case RUN: {
@@ -56,7 +58,7 @@ const Actions = ({ store, dispatch }) => {
     }
   };
 
-  const isActionEnabled = store.activeQuery && store.baseUrl;
+  const isActionEnabled = activeQuery && baseUrl;
   return (
     <div className="graphiql-header">
       <h1 className="graphiql-title">GraphiQL</h1>
@@ -86,5 +88,8 @@ const Actions = ({ store, dispatch }) => {
     </div>
   );
 };
-
+Actions.propTypes = {
+  activeQuery: PropTypes.string.isRequired,
+  baseUrl: PropTypes.string.isRequired,
+};
 export default Actions;
