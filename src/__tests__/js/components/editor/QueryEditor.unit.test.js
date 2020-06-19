@@ -13,7 +13,7 @@ describe("this is test", () => {
     jest.spyOn(React, "useEffect").mockImplementationOnce((f) => f());
     props = {
       dispatch: jest.fn(),
-      activeQuery: "",
+      query: "",
     };
     wrapper = shallow(<QueryEditor {...props} />);
   });
