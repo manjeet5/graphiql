@@ -5,7 +5,7 @@ You can download this repo to play with the functionalities stated above
 
 #### Clone the repo
 ```
-https://github.com/manjeet5/graphiql.git
+git clone https://github.com/manjeet5/graphiql.git
 ```
 
 #### Install the packages
@@ -15,9 +15,8 @@ yarn install
 
 #### Run the application locally
 ```
-yarn start
+yarn run start
 ```
-**since the editor branch is not yet merged to master, please make sure that  run the start command on the editor branch**
 
 #### Update Graphql endpoint
 You can use [fakeQL](https://fakeql.com/) to deploy a fake graphql endpoint. For testing purposed, I would recommend that you deploy **blog data** They also provide you a list of sample queries that you can run on the graphql endpoint.
