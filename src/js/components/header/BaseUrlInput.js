@@ -16,7 +16,10 @@ const BaseUrlInput = ({ url, dispatch }) => {
         {" "}
         Update Endpoint
       </button>
-      <input onChange={handleChange} placeholder={url} />
+      <input
+        onChange={handleChange}
+        placeholder={url || "Please provide valid graphql endpoint"}
+      />
     </div>
   );
 };
