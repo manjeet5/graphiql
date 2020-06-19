@@ -79,7 +79,7 @@ export function reducer(state, action) {
 }
 
 export const init = () => {
-  const baseUrl = getFromLocalStorage(GRAPHIQL_QUERIES_URL);
+  const baseUrl = getFromLocalStorage(GRAPHIQL_QUERIES_URL) || "";
   const list = getFromLocalStorage(`${GRAPHIQL_QUERIES}-${baseUrl}`);
   let queryList = list ? JSON.parse(list) : [];
   return {
