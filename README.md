@@ -15,12 +15,12 @@ yarn install
 
 #### Run the application locally
 ```
-yarn run
+yarn start
 ```
-**since the editor branch is not yet merged to master, please make sure that the above steps are followed on the editor branch**
+**since the editor branch is not yet merged to master, please make sure that  run the start command on the editor branch**
 
 #### Update Graphql endpoint
-You can use [fakeQL](https://fakeql.com/) to deploy a fake graphql endpoint. They also provide you a list of sample queries that you can run on the graphql endpoint.
+You can use [fakeQL](https://fakeql.com/) to deploy a fake graphql endpoint. For testing purposed, I would recommend that you deploy **blog data** They also provide you a list of sample queries that you can run on the graphql endpoint.
 
 
 #### run tests
