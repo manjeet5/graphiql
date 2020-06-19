@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { UPDATE_BASE_URL } from "../store/reducer";
+import PropTypes from "prop-types";
 
 const BaseUrlInput = ({ url, dispatch }) => {
   const [baseUrl, setBaseUrl] = useState(url);
@@ -21,6 +22,10 @@ const BaseUrlInput = ({ url, dispatch }) => {
       />
     </div>
   );
+};
+BaseUrlInput.propTypes = {
+  url: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default BaseUrlInput;
