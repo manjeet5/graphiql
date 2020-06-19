@@ -1,14 +1,12 @@
 import React, { useReducer } from "react";
 import "../sass/main.scss";
-import { getWindow } from "./components/utils/EnvironmentUtils";
 import { reducer, init } from "./components/store/reducer";
 import Editor from "./components/editor/Editor";
 import Actions from "./components/header/Actions";
 import HistoryQueries from "./components/historyQueries/HistoryQueries";
 import BaseUrlInput from "./components/header/BaseUrlInput";
 function App() {
-  const browserWindow = getWindow();
-  const [state, dispatch] = useReducer(reducer, browserWindow, init);
+  const [state, dispatch] = useReducer(reducer, null, init);
   return (
     <div className="graphiql-container">
       <BaseUrlInput url={state.baseUrl} dispatch={dispatch} />
