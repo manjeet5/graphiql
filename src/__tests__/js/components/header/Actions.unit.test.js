@@ -31,7 +31,9 @@ describe("Actions", () => {
     dispatch = jest.fn();
   });
   it("render", () => {
-    const { unmount } = render(<Actions dispatch={dispatch} />);
+    const { unmount } = render(
+      <Actions dispatch={dispatch} store={{ activeQuery: "a", baseUrl: "b" }} />
+    );
     const [runButton, saveButton, historyButton] = screen.getAllByRole(
       "button"
     );
