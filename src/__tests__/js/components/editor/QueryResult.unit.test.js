@@ -234,7 +234,7 @@ describe("utility functions", () => {
 
 describe("QueryResult", () => {
   let dispatch;
-  const requestBody = { query: "hi" };
+  const requestBody = JSON.stringify({ query: "hi" });
   jest.useFakeTimers();
   beforeEach(() => {
     dispatch = jest.fn();
