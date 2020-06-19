@@ -9,27 +9,28 @@ import {
   TOGGLE_SHOW_QUERY_LIST_HISTORY,
 } from "../../../../js/components/store/reducer.js";
 
-test("init function should return activeQuery and queryList as empty string and array, when no content in localStorage", () => {
-  const browserWindowStub = {
-    localStorage: {
-      getItem: () => undefined,
-    },
-  };
-  const result = init(browserWindowStub);
-  expect(result.activeQuery).toEqual("");
-  expect(result.queryList).toEqual([]);
+describe("test", () => {
+  beforeEach(() => {});
+  it("test", () => {
+    console.log("globals", global.localStorage.getItem.mock);
+  });
 });
+// test("init function should return activeQuery and queryList as empty string and array, when no content in localStorage", () => {
+//   const browserWindowStub = {
+//     localStorage: {
+//       getItem: () => undefined,
+//     },
+//   };
+//   const result = init(browserWindowStub);
+//   expect(result.activeQuery).toEqual("");
+//   expect(result.queryList).toEqual([]);
+// });
 
-test("init function should return activeQuery and queryList as 'a' and ['a','b'], when content in localStorage", () => {
-  const browserWindowStub = {
-    localStorage: {
-      getItem: () => JSON.stringify(["a", "b"]),
-    },
-  };
-  const result = init(browserWindowStub);
-  expect(result.activeQuery).toEqual("a");
-  expect(result.queryList).toEqual(["a", "b"]);
-});
+// test("init function should return activeQuery and queryList as 'a' and ['a','b'], when content in localStorage", () => {
+//   const result = init(browserWindowStub);
+//   expect(result.activeQuery).toEqual("a");
+//   expect(result.queryList).toEqual(["a", "b"]);
+// });
 
 describe("reducer actions", () => {
   it(`reducer should update textAreaRef when action type = ${ADD_TEXT_AREA_REF}`, () => {
