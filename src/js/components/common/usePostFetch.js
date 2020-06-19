@@ -29,6 +29,7 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         data: action.payload,
+        error: null,
       };
     }
     case FETCH_ERROR: {
@@ -38,6 +39,7 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: false,
+        data: null,
         error: action.error,
       };
     }
