@@ -66,6 +66,7 @@ function usePostFetch(baseUrl, requestBody) {
         body: requestBody,
         method: "POST",
         cache: "no-cache",
+        headers: { "Content-Type": "application/json" },
       })
         .then((response) => response.json())
         .then((data) => dispatch({ type: FETCH_SUCCESS, payload: data }))
