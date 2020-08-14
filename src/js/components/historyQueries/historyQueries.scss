@@ -1,0 +1,73 @@
+.history-queries-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background: $drakGreyTransparent;
+  overflow: scroll;
+}
+
+.history-queries-bar {
+  position: absolute;
+  right: 0;
+  min-height: 100vh;
+  overflow: scroll;
+  background: white;
+}
+
+.history-queries-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+
+  h1 {
+    font-size: 1.2rem;
+    text-align: left;
+    font-weight: 300;
+  }
+
+  button {
+    height: fit-content;
+    background: none;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: $lightGrey;
+    color: white;
+  }
+}
+
+.query-container {
+  background: none;
+  border-top: solid 0.1rem;
+  border-left: none;
+  border-right: none;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+
+  &:last-child {
+    border-bottom: solid 0.1rem;
+  }
+
+  &:hover {
+    background-color: $pink;
+  }
+}
+
+.query-detail {
+  background: none;
+  border: none;
+  width: 11rem;
+  text-align: left;
+}
+
+.query-delete {
+  background: none;
+  border: none;
+}

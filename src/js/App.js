@@ -1,24 +1,26 @@
-import React from "react";
-import logo from "../logo.svg";
+import React, { useReducer } from "react";
 import "../sass/main.scss";
-
+import { reducer, init } from "./components/store/reducer";
+import Editor from "./components/editor/Editor";
+import Actions from "./components/header/Actions";
+import HistoryQueries from "./components/historyQueries/HistoryQueries";
+import BaseUrlInput from "./components/header/BaseUrlInput";
 function App() {
+  const [state, dispatch] = useReducer(reducer, null, init);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="graphiql-container">
+      <BaseUrlInput url={state.baseUrl} dispatch={dispatch} />
+      <HistoryQueries
+        queryList={state.queryList}
+        show={state.showQueryListHistory}
+        dispatch={dispatch}
+      />
+      <Actions
+        activeQuery={state.activeQuery}
+        baseUrl={state.baseUrl}
+        dispatch={dispatch}
+      />
+      <Editor store={state} dispatch={dispatch} />
     </div>
   );
 }

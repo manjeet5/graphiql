@@ -1,0 +1,85 @@
+.editor-container {
+  height: 100vh;
+  display: flex;
+  flex-flow: row-nowrap;
+}
+
+.query-editor {
+  height: 100%;
+  width: 50%;
+  flex-basis: auto;
+  cursor: text;
+}
+
+.query-editor-text-area {
+  width: 100%;
+  height: 100%;
+  border: none;
+  resize: none;
+}
+
+.query-editor-results {
+  width: 50%;
+}
+
+.query-result-type-number {
+  color: $blue;
+}
+
+.query-result-type-number::before {
+  content: "  ";
+}
+
+.query-result-type-string {
+  color: $red;
+}
+
+.query-result-type-string::before {
+  content: '  "';
+}
+
+.query-result-type-string::after {
+  content: '"';
+}
+
+.query-result-name {
+  color: $darkGrey;
+}
+
+.query-result-name::before {
+  content: '"';
+}
+
+.query-result-name::after {
+  content: '"  :';
+}
+
+.query-result-open-square-bracket::before {
+  content: "";
+  margin-left: 1rem;
+}
+
+.list-with-line-numbers {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.line-numbers {
+  width: 1rem;
+  padding: 0 0.15rem;
+  margin-right: 1rem;
+  font-size: 0.8rem;
+  color: $lightGrey;
+  text-align: right;
+}
+
+.resize-editor {
+  width: 0.5rem;
+  background: grey;
+  cursor: col-resize;
+}
+
+.stop-scrolling {
+  overflow: hidden;
+}
